@@ -14,6 +14,7 @@ const GET_ITEMS= gql`
   }
 `;
 
+/*
 const PLACE_ORDER = gql`
   mutation ($uuid: String!, $items: [items_insert_input!]!, $user_id: String!) {
     insert_orders(objects: [
@@ -35,6 +36,16 @@ const PLACE_ORDER = gql`
     }
   }
 `;
+*/
+
+const PLACE_ORDER = gql`
+  mutation ($items: [String!]!, $user_id: String!) {
+    placeAndValidateOrder(user_id: $user_id, item_list: $items) {
+      order_id
+      order_valid
+    }
+  }
+`
 
 const PLACE_10_ORDER = gql`
   mutation ($orders: [orders_insert_input!]!, $items: [items_insert_input!]!) {
@@ -110,11 +121,11 @@ class PlaceOrder extends React.Component {
                 }
                 const items = Object.keys(this.state.items).filter((item) => (
                   this.state.items[item]
-                )).map((item) => (
+                ))/*.map((item) => (
                   {
                     order_id: this.state.uuid,
                     item
-                  }));
+                  }));*/
 
                 return (
                   <span>
@@ -127,7 +138,7 @@ class PlaceOrder extends React.Component {
                         }
                         placeOrder({
                           variables: {
-                            uuid: this.state.uuid,
+                            //uuid: this.state.uuid,
                             items,
                             user_id: this.props.username
                           }})

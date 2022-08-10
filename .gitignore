@@ -1,0 +1,3 @@
+*.DS_Store
+.env
+/src/flask_backend/validate-order/venv
