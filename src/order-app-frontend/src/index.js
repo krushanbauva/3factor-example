@@ -18,8 +18,8 @@ import { getMainDefinition } from 'apollo-utilities';
 //const httpurl = process.env.REACT_APP_HASURA_HTTP_URL || "http://localhost:8080/v1alpha1/graphql";
 //const adminSecret = process.env.REACT_APP_HASURA_ADMIN_SECRET;
 
-const wsurl = "ws://3factor-example.hasura.app/v1/graphql"
-const httpurl = "https://3factor-example.hasura.app/v1/graphql"
+const wsurl = process.env.REACT_APP_HASURA_WEBSOCKET_URL
+const httpurl = process.env.REACT_APP_HASURA_HTTP_URL
 const adminSecret = process.env.REACT_APP_HASURA_ADMIN_SECRET;
 
 const wsLink = new WebSocketLink({

@@ -45,7 +45,7 @@ const PLACE_ORDER = gql`
       order_valid
     }
   }
-`
+`;
 
 const PLACE_10_ORDER = gql`
   mutation ($orders: [orders_insert_input!]!, $items: [items_insert_input!]!) {
@@ -111,7 +111,8 @@ class PlaceOrder extends React.Component {
             <Mutation mutation={PLACE_ORDER}>
               {(placeOrder, {loading, error, data}) => {
                 if (data) {
-                  this.props.routeProps.history.push('/order/'+this.state.uuid);
+                  console.log(data)
+                  this.props.routeProps.history.push('/order/'+data.placeAndValidateOrder.order_id);
                 }
                 if (loading) {
                   return (<span><Button bsStyle="primary" disabled>Loading...</Button>&nbsp;&nbsp;</span>);
